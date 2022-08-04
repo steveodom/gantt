@@ -1133,6 +1133,10 @@ var Gantt = (function () {
 
                 // cache index
                 task._index = i;
+                
+                if (typeof task.row_id === 'number') { 
+                    task._index = task.row_id; 
+                }
 
                 // invalid dates
                 if (!task.start && !task.end) {
@@ -1353,22 +1357,28 @@ var Gantt = (function () {
         }
 
         make_grid_rows() {
+            let counter_rows = 0;
+            const distinctRows = [...new Set(this.tasks.map(x => x.row_id))];
+            for (let row of distinctRows){
+                counter_rows = counter_rows + 1;
+            }
+            console.log(counter_rows + " unique rows");
+
             const rows_layer = createSVG('g', { append_to: this.layers.grid });
             const lines_layer = createSVG('g', { append_to: this.layers.grid });
-
             const row_width = this.dates.length * this.options.column_width;
             const row_height = this.options.bar_height + this.options.padding;
-
             let row_y = this.options.header_height + this.options.padding / 2;
+            //var counter = 0;
 
-            for (let task of this.tasks) {
+            for (let row of distinctRows) {
                 createSVG('rect', {
                     x: 0,
                     y: row_y,
                     width: row_width,
                     height: row_height,
                     class: 'grid-row',
-                    append_to: rows_layer,
+                    append_to: rows_layer
                 });
 
                 createSVG('line', {
@@ -1377,12 +1387,13 @@ var Gantt = (function () {
                     x2: row_width,
                     y2: row_y + row_height,
                     class: 'row-line',
-                    append_to: lines_layer,
+                    append_to: lines_layer
                 });
 
                 row_y += this.options.bar_height + this.options.padding;
             }
         }
+
 
         make_grid_header() {
             const header_width = this.dates.length * this.options.column_width;

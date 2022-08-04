@@ -1,12 +1,14 @@
 <div align="center">
     <img src="https://github.com/frappe/design/blob/master/logos/logo-2019/frappe-gantt-logo.png" height="128">
-    <h2>Frappe Gantt</h2>
+    <h2>Frappe Gantt (forked)</h2>
     <p align="center">
         <p>A simple, interactive, modern gantt chart library for the web</p>
         <a href="https://frappe.github.io/gantt">
             <b>View the demo »</b>
         </a>
     </p>
+
+    <p>This is a fork to add multiple elements per row</p>
 </div>
 
 <p align="center">
