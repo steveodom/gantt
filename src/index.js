@@ -105,9 +105,9 @@ export default class Gantt {
 
             // cache index
             task._index = i;
-            
-            if (typeof task.row_id === 'number') { 
-                task._index = task.row_id; 
+
+            if (typeof task.row_id === 'number') {
+                task._index = task.row_id;
             }
 
             // invalid dates
@@ -334,7 +334,6 @@ export default class Gantt {
         for (let row of distinctRows){
             counter_rows = counter_rows + 1;
         }
-        console.log(counter_rows + " unique rows")
 
         const rows_layer = createSVG('g', { append_to: this.layers.grid });
         const lines_layer = createSVG('g', { append_to: this.layers.grid });
